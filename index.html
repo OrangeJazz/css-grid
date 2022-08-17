@@ -1,0 +1,262 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>reveal.js</title>
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/black.css">
+
+		<!-- Theme used for syntax highlighted code -->
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section data-background-color="rgb(55, 70, 70)">CSS GRID LAYOUT</section>
+				<section>
+					<section data-background-color="rgb(55, 70, 70)">
+						CSS Grid is a set of CSS properties for building 2-dimensional layouts
+					</section>
+					<section data-background-color="rgb(55, 70, 70)">We divide a container element into	rows and columns that can be filled with its child elements
+					</section>
+					<section data-background-color="rgb(55, 70, 70)">CSS Grid is not meant to replace flexbox! <br>They work perfectly together: <br>1D layout => Use flexbox <br>2D layout => Use CSS Grid
+					</section>
+				</section>
+				<section>
+					<h3>display: grid</h3>
+					<img data-src="./img/grid.png">
+					<pre><code data-trim data-noescape>
+						display: grid | inline-grid;
+					</code></pre>
+				</section>
+				<section>
+					<section data-background-color="rgb(55, 70, 70)">
+						<h3>
+							grid-template-columns<br>
+							grid-template-rows
+						</h3>
+						This properties can contain:
+						<ul>
+							<li><strong>track-size</strong> – can be a length, a percentage, or a fraction of the free space in the grid (using the fr unit)</li> 
+							<li><strong>line-name</strong> – an arbitrary name of your choosing</li>
+						</ul> 
+					</section>
+
+					<section data-background-color="rgb(55, 70, 70)">
+						Note the bracket syntax for the line names:
+						<pre><code data-trim data-noescape>
+						grid-template-columns: [first] 40px [line2] auto 40px [end];
+						grid-template-rows: [row1-start] 25% [row1-end] auto [last-line];
+				</code></pre>
+				Use the repeat() notation to streamline things:
+				<pre><code data-trim data-noescape>
+					grid-template-columns: repeat(3, 20px [col-start]);
+			</code></pre>
+			The <b>fr</b> unit allows you to set the size of a track as a fraction of the free space of the grid container. The free space is calculated after any non-flexible items. 
+			<pre><code data-trim data-noescape>
+			grid-template-columns: 1fr 50px 1fr 1fr;
+		</code></pre>
+
+			</section>
+
+				</section>
+
+				<section data-background-color="rgb(55, 70, 70)">
+					<section>
+						<h3>grid-template-areas</h3>
+						<p>
+						Defines a grid template by referencing the names of the grid areas which are specified with the grid-area property. Repeating the name of a grid area causes the content to span those cells. A period signifies an empty cell. The syntax itself provides a visualization of the structure of the grid.</p>
+					</section>
+					<section>
+						Example:
+						<pre><code data-trim data-noescape>
+							.container {
+								display: grid;
+								grid-template-columns: 50px 50px 50px 50px;
+								grid-template-rows: auto;
+								grid-template-areas: 
+									"header header header header"
+									"main main . sidebar"
+									"footer footer footer footer";
+							}
+						</code></pre>
+						<img src="https://css-tricks.com/wp-content/uploads/2018/11/dddgrid-template-areas.svg" height="300" alt="">
+					</section>
+				</section>
+				<section data-background-color="rgb(55, 70, 70)">
+					<h3>grid-template</h3>
+					<pre><code data-trim data-noescape>
+					grid-template = 
+						grid-template-rows + grid-template-columns + grid-template-areas</code></pre>
+					Example:
+						<pre><code data-trim data-noescape>
+							grid-template:
+							[row1-start] "header header header" 25px [row1-end]
+							[row2-start] "footer footer footer" 25px [row2-end]
+							/ auto 50px auto;
+						</code></pre>
+						is equal
+						<pre><code data-trim data-noescape>
+						grid-template-rows: 
+								[row1-start] 25px [row1-end row2-start] 25px [row2-end];
+  				grid-template-columns: auto 50px auto;
+  				grid-template-areas: 
+    				"header header header" 
+    				"footer footer footer";
+						</code></pre>
+				</section>
+				<section data-background-color="rgb(55, 70, 70)">
+					<section>
+					<h3>Gap</h3>
+					<p>Specifies the size of the grid lines. Looks like setting the width of the gutters between the columns/rows.</p>
+					<pre><code data-trim data-noescape>
+						/* standard notation*/
+						column-gap: <line-size>;
+						row-gap: <line-size>;
+					
+						/* old notation*/
+						grid-column-gap: <line-size>;
+						grid-row-gap: <line-size>;
+					</code></pre></section>
+					<section>
+						Example:
+						<pre><code data-trim data-noescape>
+						column-gap: 10px;
+						row-gap: 15px;</code></pre>
+						<img src="./img/gap.png" height="300" alt="">
+					</section>
+					<section>
+						A shorthand for row-gap and column-gap:
+						<pre><code data-trim data-noescape>
+						/* standard notation */
+  					gap: grid-row-gap grid-column-gap;
+						/* old notation */
+ 				 	grid-gap: grid-row-gap grid-column-gap;
+						</code></pre>
+					</section>
+				</section>
+				<section data-background-color="rgb(55, 70, 70)">
+					<section>
+
+						<h3>justify-items and align-items</h3>
+						This both value applies to all grid items inside the container.<br>
+						</section>
+						<section>
+						justify-items - aligns grid items along the inline (row) axis <br>
+						<pre><code data-trim data-noescape>justify-items: start | end | center | stretch;</code></pre>	
+						Example:
+						<pre><code data-trim data-noescape>
+						.container {
+							justify-items: center;
+						}</code></pre>
+						<img src="./img/justitem.png" height="200" alt="">
+					</section>
+					<section>
+						align-items - aligns grid items along the block (column) axis
+						<pre><code data-trim data-noescape>align-items: start | end | center | stretch;</code></pre>
+						Example:
+						<pre><code data-trim data-noescape>
+						.container {
+							align-items: end;
+						}</code></pre>
+						<img src="./img/alitem.png" height="200" alt="">
+					</section>
+					<section>
+						place-items sets both the align-items and justify-items properties in a single declaration.<br>
+						Example:
+						<pre><code data-trim data-noescape>
+						.container {
+							place-items: center;
+						}</code></pre>
+					</section>
+				</section>
+				<section data-background-color="rgb(55, 70, 70)">
+					<section>
+						<h3>justify-content and align-content</h3>
+						If the total size of grid is less than the size of its grid container we can set the alignment of the grid within the grid container. 
+					</section>
+					<section>
+						justify-content - aligns the grid along the inline (row) axis
+						<pre><code data-trim data-noescape>
+							justify-content: 
+								start | end | center | stretch | 
+								space-around | space-between | space-evenly;</code></pre>
+						Example:
+						<pre><code data-trim data-noescape>
+						.container {
+							justify-content: space-around;
+						}</code></pre>
+						<img src="./img/justcontent.png" height="200" alt="">
+					</section>
+					<section>
+						align-content - aligns the grid along the block (column) axis
+						<pre><code data-trim data-noescape>
+							align-content: start | end | center | stretch 
+							| space-around | space-between | space-evenly;</code></pre>
+						Example:
+						<pre><code data-trim data-noescape>
+						.container {
+							align-content: space-between;
+						}</code></pre>
+						<img src="./img/alcontent.png" height="250" alt="">
+					</section>
+					<section>
+						place-content sets both the align-content and justify-content properties in a single declaration.<br>
+				</section>
+				</section>
+				<section data-background-color="rgb(55, 70, 70)">
+					<section>
+						<h3>justify-self and align-self</h3>
+						This values applies to a grid item inside a single cell.
+					</section>
+					<section>
+						justify-self - aligns a grid item inside a cell along the inline (row) axis
+						<pre><code data-trim data-noescape>
+							justify-self: start | end | center | stretch;</code></pre>
+						Example:
+						<pre><code data-trim data-noescape>
+							.item-a {
+								justify-self: start;
+							}</code></pre>
+						<img src="./img/justself.png" height="200" alt="">
+					</section>
+					<section>
+						align-self - aligns a grid item inside a cell along the block (column) axis
+						<pre><code data-trim data-noescape>
+							align-self: start | end | center | stretch;</code></pre>
+						Example:
+						<pre><code data-trim data-noescape>
+							.item-a {
+								align-self: stretch;
+							}</code></pre>
+						<img src="./img/alself.png" height="200" alt="">
+					</section>
+					<section>
+						place-self sets both the align-self and justify-self in a single declaration.<br>
+						All major browsers except Edge support the place-self shorthand property.
+				</section>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script>
+			// More info about initialization & config:
+			// - https://revealjs.com/initialization/
+			// - https://revealjs.com/config/
+			Reveal.initialize({
+				hash: true,
+
+				// Learn about plugins: https://revealjs.com/plugins/
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			});
+		</script>
+	</body>
+</html>
