@@ -26,14 +26,14 @@
 					<section data-background-color="rgb(55, 70, 70)">CSS Grid is not meant to replace flexbox! <br>They work perfectly together: <br>1D layout => Use flexbox <br>2D layout => Use CSS Grid
 					</section>
 				</section>
-				<section>
+				<section data-background-color="rgb(55, 70, 70)">
 					<h3>display: grid</h3>
 					<img data-src="./img/grid.png">
 					<pre><code data-trim data-noescape>
 						display: grid | inline-grid;
 					</code></pre>
 				</section>
-				<section>
+				<section data-background-color="rgb(55, 70, 70)">
 					<section data-background-color="rgb(55, 70, 70)">
 						<h3>
 							grid-template-columns<br>
@@ -64,7 +64,62 @@
 			</section>
 
 				</section>
+				<section data-background-color="rgb(55, 70, 70)">
+					<section>
+						<h3>other properties to set up grid size</h3>
 
+					</section>
+					<section>
+
+							grid-column-start <br>
+							grid-column-end <br>
+							grid-row-start <br>
+							grid-row-end <br>
+							<br>
+							Values: 'line' | span 'number' | span 'name' | auto;
+					</section>
+					<section>
+						Example:
+						<pre><code data-trim data-noescape>
+							.item-a {
+								grid-column-start: 2;
+								grid-column-end: five;
+								grid-row-start: row1-start;
+								grid-row-end: 3;
+							}
+						</code></pre>
+						<img src="./img/startend.png" height="300" alt="">
+					</section>
+					<section>
+						<h3>grid-column<br>
+							grid-row</h3>
+							This is shorthand for: <br>grid-column-start + grid-column-end, <br>and grid-row-start + grid-row-end<br>
+
+					</section>
+					<section>
+						Example:
+						<pre><code data-trim data-noescape>
+							.item-c {
+								grid-column: 3 / span 2;
+								grid-row: third-line / 4;
+							}
+						</code></pre>
+						<img src="./img/colandrow.png" height="300" alt="">
+					</section>
+					<section>
+						<h3>grid-area</h3>
+						This property also can be used as an even shorter shorthand for: <br>grid-row-start + grid-column-start + grid-row-end + grid-column-end
+					</section>
+					<section>
+						Example:
+						<pre><code data-trim data-noescape>
+							.item-d {
+								grid-area: 1 / col4-start / last-line / 6;
+							}
+						</code></pre>
+						<img src="./img/area.png" height="300" alt="">
+					</section>
+				</section>	
 				<section data-background-color="rgb(55, 70, 70)">
 					<section>
 						<h3>grid-template-areas</h3>
@@ -157,7 +212,7 @@
 					</section>
 					<section>
 						align-items - aligns grid items along the block (column) axis
-						<pre><code data-trim data-noescape>align-items: start | end | center | stretch;</code></pre>
+						<pre><code data-trim data-noescape>align-items: start | end | center | stretch | baseline;</code></pre>
 						Example:
 						<pre><code data-trim data-noescape>
 						.container {
